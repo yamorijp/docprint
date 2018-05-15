@@ -22,7 +22,8 @@ module.exports = function(options) {
 		header = options.header,
 		headerhtml = options.headerhtml,
 		cssFile = options.css,
-		customCSS;
+		customCSS,
+		title = options.title || "API Documentation";
 
 	if (cssFile) {
 		customCSS = fs.readFileSync(cssFile).toString();
@@ -62,7 +63,8 @@ module.exports = function(options) {
 					customCSS: customCSS,
 					dataStructures: dataStructures, 
 					capitalize: capitalize, 
-					lang: l
+					lang: l,
+					title: title
 			}));
 		});
 	} catch (err) {
