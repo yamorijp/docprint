@@ -17,7 +17,13 @@ var md = markdownIt({
 	typographer: true
 }).use(require('markdown-it-anchor'), {
 	permalink: true
-});
+})
+	.use(require('markdown-it-sub'))
+	.use(require('markdown-it-sup'))
+	.use(require('markdown-it-footnote'))
+	.use(require('markdown-it-container'), 'note')
+	.use(require('markdown-it-container'), 'warning')
+	.use(require('markdown-it-emoji'));
 
 module.exports = function parse(result, current, parent) {
 	switch(result.element) {
