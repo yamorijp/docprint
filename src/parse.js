@@ -1,5 +1,6 @@
 var HTTPSnippet = require('httpsnippet');
 var cheerio = require('cheerio');
+var hljs = require('highlight.js');
 var util = require('./util');
 var host = require('./host');
 
@@ -14,7 +15,15 @@ var markdownIt = require('markdown-it');
 var md = markdownIt({
 	html: true,
 	linkify: true,
-	typographer: true
+	typographer: true,
+	highlight: function(str, lang) {
+		if (lang && hljs.getLanguage(lang)) {
+			try {
+				return hljs.highlight(lang, str).value;
+			} catch (_) {}
+		}
+		return '';
+	}
 }).use(require('markdown-it-anchor'), {
 	permalink: true
 })
@@ -89,7 +98,6 @@ module.exports = function parse(result, current, parent) {
 			current.xhrContent = xhrContent(current, parent);
 			current.snippet = unescape((new HTTPSnippet(current.xhrContent)).convert('shell', 'curl'));
 			current.snippets = [];
-
 			var lang = [{ 
 				name: 'curl',
 				target: 'shell',
