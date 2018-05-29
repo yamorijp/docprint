@@ -173,6 +173,10 @@ module.exports = function parse(result, current, parent) {
 				current.content = highlight(result.content);	
 			}
 			break;
+		case 'annotation':
+			var classes = (result.meta && result.meta.classes) || []
+			console.log(classes.join(",") + ":", result.content)
+			break;
 		default:
 	}
 	return current;
