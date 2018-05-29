@@ -7,11 +7,17 @@ mixin renderUrlParameters(params)
 						if param.key.content
 							div
 								span.key #{param.key.content}
-						if param.value.element
-							div
-								span.type #{param.value.element}
-						if param.value.content
-							div
+						div
+							if param.type
+								span.type #{param.type}
+							if param.required
+								span.required Required
+							if param.optional
+								span.optional Optional
+						div
+							if param.value.attributes && param.value.attributes.default
+								span.default Default value is #{param.value.attributes.default}
+							if param.value.content
 								span.example Example: #{param.value.content}
 					.right
 						if param.description

@@ -292,7 +292,7 @@ li.param:last-child, li.attr:last-child {
 	font-size: 12px;
 }
 
-.left .example {
+.left .example, .left .default {
 	font-size: 11px;
 }
 

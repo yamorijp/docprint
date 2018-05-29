@@ -192,7 +192,11 @@ function getProps(props){
 	var data = '';
 	try {
 		props.hrefVariables.content.forEach(function(variable) {
+      var attrs = (variable.attributes && variable.attributes.typeAttributes) || []
 			urlParameters.push({
+			  type: (variable.meta && variable.meta.title) || (variable.content && variable.content.value),
+				required: attrs.indexOf('required'),
+				optional: attrs.indexOf('optional'),
 				wfn : variable.meta && variable.meta.description,
 				key: variable.content && variable.content.key,
 				value: variable.content && variable.content.value
