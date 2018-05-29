@@ -207,8 +207,8 @@ function getProps(props){
       var attrs = (variable.attributes && variable.attributes.typeAttributes) || []
 			urlParameters.push({
 			  type: (variable.meta && variable.meta.title) || (variable.content && variable.content.value),
-				required: attrs.indexOf('required'),
-				optional: attrs.indexOf('optional'),
+				required: attrs.indexOf('required') !== -1,
+				optional: attrs.indexOf('optional') !== -1,
 				wfn : variable.meta && variable.meta.description,
 				key: variable.content && variable.content.key,
 				value: variable.content && variable.content.value
